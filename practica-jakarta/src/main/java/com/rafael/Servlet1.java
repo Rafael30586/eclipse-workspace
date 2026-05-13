@@ -36,6 +36,8 @@ public class Servlet1 extends HttpServlet {
 		out.println("<span> Servlet1: Método Get </span>");
 		out.println("</body>");
 		out.println("</html>");
+		
+		System.out.println("Método del tipo: "+request.getMethod());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,6 +51,8 @@ public class Servlet1 extends HttpServlet {
 		out.println("<span> Servlet1: Método Post </span>");
 		out.println("</body>");
 		out.println("</html>");
+		
+		System.out.println("Método del tipo: "+request.getMethod());
 		
 	}
 
@@ -64,6 +68,8 @@ public class Servlet1 extends HttpServlet {
 		out.println("<span> Servlet1: Método Put </span>");
 		out.println("</body>");
 		out.println("</html>");
+		
+		System.out.println("Método del tipo: "+request.getMethod());
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -77,6 +83,8 @@ public class Servlet1 extends HttpServlet {
 		out.println("<span> Servlet1: Método Delete </span>");
 		out.println("</body>");
 		out.println("</html>");
+		
+		System.out.println("Método del tipo: "+request.getMethod());
 	}
 
 }
