@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>primera-web-dinamica-2</display-name>
+  
+  <!--  
+  <servlet>
+    <servlet-name>abc</servlet-name>
+    <servlet-class>com.rafael.SumarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>abc</servlet-name>
+    <url-pattern>/suma</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>cuadrado</servlet-name>
+    <servlet-class>com.rafael.CuadradoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cuadrado</servlet-name>
+    <url-pattern>/cuadrado</url-pattern>
+  </servlet-mapping>
+  -->
+</web-app>

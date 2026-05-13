@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>servlet-filter-demo-2</display-name>
+  <servlet>
+    <description></description>
+    <display-name>MiServlet</display-name>
+    <servlet-name>MiServlet</servlet-name>
+    <servlet-class>com.rafael.MiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MiServlet</servlet-name>
+    <url-pattern>/addAlien</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>idFilter</display-name>
+    <filter-name>idFilter</filter-name>
+    <filter-class>com.rafael.idFilter</filter-class>
+  </filter>
+  <!--
+  <filter-mapping>
+    <filter-name>idFilter</filter-name>
+    <url-pattern>/addAlient</url-pattern>
+  </filter-mapping>  
+  -->
+  <filter-mapping>
+    <filter-name>idFilter</filter-name>
+    <servlet-name>MiServlet</servlet-name>
+  </filter-mapping>
+</web-app>
