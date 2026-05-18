@@ -22,6 +22,7 @@ public class Servlet3 extends HttpServlet {
 		Cookie cookie = new Cookie("nombre","sonic");
 		cookie.setAttribute("habilidad","super velocidad");
 		cookie.setMaxAge(1000);
+		cookie.setPath("/practica-jakarta/Servlet2");
 		response.addCookie(cookie);
 	}
 

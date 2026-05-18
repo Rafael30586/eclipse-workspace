@@ -39,4 +39,14 @@
     <servlet-name>Servlet3</servlet-name>
     <url-pattern>/Servlet3</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Servlet4</display-name>
+    <servlet-name>Servlet4</servlet-name>
+    <servlet-class>com.rafael.Servlet4</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet4</servlet-name>
+    <url-pattern>/Servlet4</url-pattern>
+  </servlet-mapping>
 </web-app>
