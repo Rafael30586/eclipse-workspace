@@ -12,7 +12,7 @@ import java.util.Enumeration;
 
 
 public class Servlet4 extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	
        
   
     public Servlet4() {
@@ -36,6 +36,10 @@ public class Servlet4 extends HttpServlet {
 		System.out.println("Cabecera de autorización: "+request.getHeader("authorization"));
 		System.out.println("Cabecera de anfitrión: "+request.getHeader("host"));
 		System.out.println("Cabecera de conexión: "+request.getHeader("connection"));
+		System.out.println("Usuario remoto: "+request.getRemoteUser());
+		System.out.println("Anfitrión remoto: "+request.getRemoteHost());
+		
+		response.setHeader("saludo","hola");
 		
 	}
 

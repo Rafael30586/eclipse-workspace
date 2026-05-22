@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
-  <display-name>practica-jakarta</display-name>
+  <display-name>practica-jakarta-2</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -29,6 +29,21 @@
     <servlet-name>Servlet2</servlet-name>
     <url-pattern>/Servlet2</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>Filtro1</display-name>
+    <filter-name>Filtro1</filter-name>
+    <filter-class>com.rafael.filtros.Filtro1</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Filtro1</filter-name>
+    <url-pattern>/Servlet1</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>Filtro1</filter-name>
+    <servlet-name>Servlet2</servlet-name>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
   <servlet>
     <description></description>
     <display-name>Servlet3</display-name>
@@ -59,35 +74,6 @@
     <servlet-name>Servlet5</servlet-name>
     <url-pattern>/Servlet5</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Servlet6</display-name>
-    <servlet-name>Servlet6</servlet-name>
-    <servlet-class>com.rafael.Servlet6</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Servlet6</servlet-name>
-    <url-pattern>/Servlet6</url-pattern>
-  </servlet-mapping>
-  <filter>
-    <display-name>Filtro</display-name>
-    <filter-name>Filtro</filter-name>
-    <filter-class>com.rafael.Filtro</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>Filtro</filter-name>
-    <servlet-name>Servlet2</servlet-name>
-  </filter-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Servlet7</display-name>
-    <servlet-name>Servlet7</servlet-name>
-    <servlet-class>com.rafael.Servlet7</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Servlet7</servlet-name>
-    <url-pattern>/Servlet7</url-pattern>
-  </servlet-mapping>
   <filter>
     <display-name>Filtro2</display-name>
     <filter-name>Filtro2</filter-name>
@@ -95,7 +81,7 @@
   </filter>
   <filter-mapping>
     <filter-name>Filtro2</filter-name>
-    <url-pattern>/Servlet4</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
+    <url-pattern>/Saludo.jsp</url-pattern>
+    <dispatcher>FORWARD</dispatcher>
   </filter-mapping>
 </web-app>
