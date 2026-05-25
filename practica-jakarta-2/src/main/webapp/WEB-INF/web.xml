@@ -41,8 +41,7 @@
   </filter-mapping>
   <filter-mapping>
     <filter-name>Filtro1</filter-name>
-    <servlet-name>Servlet2</servlet-name>
-    <dispatcher>REQUEST</dispatcher>
+    <url-pattern>/Servlet2</url-pattern>
   </filter-mapping>
   <servlet>
     <description></description>
@@ -84,4 +83,29 @@
     <url-pattern>/Saludo.jsp</url-pattern>
     <dispatcher>FORWARD</dispatcher>
   </filter-mapping>
+  <filter>
+    <display-name>Filtro3</display-name>
+    <filter-name>Filtro3</filter-name>
+    <filter-class>com.rafael.filtros.Filtro3</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Filtro3</filter-name>
+    <servlet-name>Servlet2</servlet-name>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Servlet6</display-name>
+    <servlet-name>Servlet6</servlet-name>
+    <servlet-class>com.rafael.Servlet6</servlet-class>
+  </servlet>
+  <!--  
+  <filter>
+    <display-name>A</display-name>
+    <filter-name>A</filter-name>
+    <filter-class>com.rafael.filtros.A</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>A</filter-name>
+    <url-pattern>/A</url-pattern>
+  </filter-mapping> -->
 </web-app>

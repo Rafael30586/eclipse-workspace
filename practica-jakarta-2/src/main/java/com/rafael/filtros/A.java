@@ -3,18 +3,20 @@ package com.rafael.filtros;
 import jakarta.servlet.Filter;
 import jakarta.servlet.http.HttpFilter;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
 
-public class Filtro1 extends HttpFilter implements Filter {
+@WebFilter(urlPatterns = {"/servlet6","/Servlet6"})
+public class A extends HttpFilter implements Filter {
        
-    public Filtro1() {
+
+    public A() {
         super();
+        
     }
 
 	public void destroy() {
@@ -22,16 +24,11 @@ public class Filtro1 extends HttpFilter implements Filter {
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		String clave = "123456";
-		PrintWriter writer = response.getWriter();
-		System.out.println("Soy el filtro 1");
-		
-		if(clave.equals(request.getParameter("clave"))) chain.doFilter(request, response); 
-		else writer.print("error");
-		    
-		
+		        System.out.println("Soy la A");
+				chain.doFilter(request, response);
 	}
 
+	
 	public void init(FilterConfig fConfig) throws ServletException {
 		
 	}
