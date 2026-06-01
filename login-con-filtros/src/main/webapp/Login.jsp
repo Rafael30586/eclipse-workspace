@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+</head>
+<body>
+
+  <h2>Please login here</h2>
+
+  <form action="login" method="post">
+    <label for="username">Username</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="submit">
+  </form>
+  
+  <c:if test="${param.error}">
+    Invalid username/password
+  </c:if>
+
+</body>
+</html>
