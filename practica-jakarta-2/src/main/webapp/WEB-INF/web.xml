@@ -98,14 +98,21 @@
     <servlet-name>Servlet6</servlet-name>
     <servlet-class>com.rafael.Servlet6</servlet-class>
   </servlet>
-  <!--  
-  <filter>
-    <display-name>A</display-name>
-    <filter-name>A</filter-name>
-    <filter-class>com.rafael.filtros.A</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>A</filter-name>
-    <url-pattern>/A</url-pattern>
-  </filter-mapping> -->
+  <servlet>
+    <description></description>
+    <display-name>Servlet7</display-name>
+    <servlet-name>Servlet7</servlet-name>
+    <servlet-class>com.rafael.Servlet7</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet7</servlet-name>
+    <url-pattern>/Servlet7</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Servlet8</display-name>
+    <servlet-name>Servlet8</servlet-name>
+    <servlet-class>com.rafael.Servlet8</servlet-class>
+  </servlet>
+  
 </web-app>
