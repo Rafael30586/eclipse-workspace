@@ -36,19 +36,19 @@ body{
     font-size:20px;
 }
 
-.campo{
+.field{
     display:flex;
     flex-direction:column;
     margin-bottom:20px;
 }
 
-.campo label{
+.field label{
     margin-bottom:8px;
     font-weight:bold;
     color:#444;
 }
 
-.campo input{
+.field input{
     padding:12px;
     border:1px solid #ccc;
     border-radius:8px;
@@ -56,7 +56,7 @@ body{
     transition:.3s;
 }
 
-.campo input:focus{
+.field input:focus{
     outline:none;
     border-color:#ff6f61;
     box-shadow:0 0 8px rgba(255,111,97,.4);

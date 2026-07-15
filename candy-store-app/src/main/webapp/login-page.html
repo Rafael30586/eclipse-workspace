@@ -7,30 +7,31 @@
 </head>
 <body>
 	
-	<div class="login-container">
+	
+    <div class="login-container">
 
-        <h1>Candy store</h1>
-        <h2>Sign in</h2>
+        <h1>Candy Store</h1>
+        <h2>Sign In</h2>
 
-        <form action="login" method="post">
+        <form action="login-servlet" method="post">
 
-            <div class="campo">
-                <label for="usuario">Username</label>
+            <div class="field">
+                <label for="username">Username</label>
                 <input
                     type="text"
-                    id="usuario"
-                    name="usuario"
-                    placeholder="Ingrese su usuario"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
                     required>
             </div>
 
-            <div class="campo">
+            <div class="field">
                 <label for="password">Password</label>
                 <input
                     type="password"
                     id="password"
                     name="password"
-                    placeholder="Ingrese su contraseña"
+                    placeholder="Enter your password"
                     required>
             </div>
 
