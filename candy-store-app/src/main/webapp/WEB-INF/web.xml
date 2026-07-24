@@ -38,4 +38,14 @@
   <listener>
     <listener-class>com.rafael.listener.ApplicationContextListener</listener-class>
   </listener>
+  <servlet>
+    <description></description>
+    <display-name>NewTypeServlet</display-name>
+    <servlet-name>NewTypeServlet</servlet-name>
+    <servlet-class>com.rafael.NewTypeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewTypeServlet</servlet-name>
+    <url-pattern>/NewTypeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
