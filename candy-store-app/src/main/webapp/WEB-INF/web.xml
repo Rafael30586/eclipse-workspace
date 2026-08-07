@@ -48,4 +48,24 @@
     <servlet-name>NewTypeServlet</servlet-name>
     <url-pattern>/NewTypeServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewProductServlet</display-name>
+    <servlet-name>NewProductServlet</servlet-name>
+    <servlet-class>com.rafael.NewProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewProductServlet</servlet-name>
+    <url-pattern>/NewProductServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewBrandServlet</display-name>
+    <servlet-name>NewBrandServlet</servlet-name>
+    <servlet-class>com.rafael.NewBrandServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewBrandServlet</servlet-name>
+    <url-pattern>/NewBrandServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

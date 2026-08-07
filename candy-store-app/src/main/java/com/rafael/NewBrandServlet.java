@@ -12,34 +12,39 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-public class NewTypeServlet extends HttpServlet {
+public class NewBrandServlet extends HttpServlet {
 	
-   
-    public NewTypeServlet() {
+    public NewBrandServlet() {
         super();
+        
     }
 
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String typeName = request.getParameter("type-name");
+		String brandName = request.getParameter("brand-name");
 		
-		String statement = "INSERT INTO categorization(type_name) VALUES(?)";
+		String insertNewBrandString = "INSERT INTO brands(brand_name) VALUES(?)";
 		
 		ServletContext context = request.getServletContext();
 		
 		Connection connection = (Connection)context.getAttribute("dbConnection");
 		
+		
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(statement);
-			preparedStatement.setString(1, typeName);
-			preparedStatement.executeUpdate();
+			connection.setAutoCommit(true);
+			
+			PreparedStatement insertNewBrandStatement = connection.prepareStatement(insertNewBrandString);
+			insertNewBrandStatement.setString(1,brandName);
+			insertNewBrandStatement.executeUpdate();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 	}
 
 }
