@@ -29,18 +29,20 @@ public class NewProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String productName = request.getParameter("name");
 		String flavour = request.getParameter("flavour");
-		float pricePerUnit = Float.valueOf(request.getParameter("pricePerUnit"));
-		float pricePer100g = Float.valueOf(request.getParameter("pricePer100g"));
-		int stockUnits = Integer.valueOf(request.getParameter("stockUnits"));
-		long stockGrams = Long.valueOf(request.getParameter("stockGrams"));
+		// float pricePerUnit = Float.valueOf(request.getParameter("price-per-unit"));
+		// float pricePer100g = Float.valueOf(request.getParameter("price-per-100g"));
+		// int stockUnits = Integer.valueOf(request.getParameter("stock-units"));
+		int stockUnits = 0;
+		// long stockGrams = Long.valueOf(request.getParameter("stock-grams"));
+		long stockGrams = 0;
 		// long unitsSold = Long.valueOf(request.getParameter("unitsSold"));
-		// double kGramsSold = Double.valueOf(request.getParameter("kGramsSold"));
-		long productTypeId = Long.valueOf(request.getParameter("productTypeId"));
+		long productTypeId = Long.valueOf(request.getParameter("product-type-id"));
+		// double kGramsSold = Double.valueOf(request.getParameter("kilograms-sold"));
 		
 		long brandId = Long.valueOf(request.getParameter("brandId"));
 		
 		
-		String statement = "INSERT INTO product(product_name,flavour, price_per_unit, price_per_100g, stock_units, stock_grams ,product_type_id) VALUES(?,?,?,?,?,?,?)";
+		String statement = "INSERT INTO product(product_name,flavour, stock_units, stock_grams ,product_type_id) VALUES(?,?,?,?,?)";
 		String saveBrandProductRelationString = "INSERT INTO product_brand(product_id, brand_id) VALUES(?,?)";
 		
 		
@@ -54,11 +56,12 @@ public class NewProductServlet extends HttpServlet {
 			PreparedStatement preparedStatement = connection.prepareStatement(statement);
 			preparedStatement.setString(0, productName);
 			preparedStatement.setString(1, flavour);
-			preparedStatement.setFloat(2, pricePerUnit);
-			preparedStatement.setFloat(3, pricePer100g);
-			preparedStatement.setInt(4, stockUnits);
-			preparedStatement.setLong(5, stockGrams);
-			preparedStatement.setLong(6, productTypeId);
+			// preparedStatement.setFloat(2, pricePerUnit);
+			// preparedStatement.setFloat(3, pricePer100g);
+			preparedStatement.setInt(2, stockUnits);
+			preparedStatement.setLong(3, stockGrams);
+			preparedStatement.setLong(4, productTypeId);
+			// preparedStatement.setDouble(7, kGramsSold);
 			
 			preparedStatement.executeUpdate();
 			
