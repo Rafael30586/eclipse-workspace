@@ -39,10 +39,10 @@ public class NewProductServlet extends HttpServlet {
 		long productTypeId = Long.valueOf(request.getParameter("product-type-id"));
 		// double kGramsSold = Double.valueOf(request.getParameter("kilograms-sold"));
 		
-		long brandId = Long.valueOf(request.getParameter("brandId"));
+		long brandId = Long.valueOf(request.getParameter("brand-id"));
 		
 		
-		String statement = "INSERT INTO product(product_name,flavour, stock_units, stock_grams ,product_type_id) VALUES(?,?,?,?,?)";
+		String statement = "INSERT INTO products(product_name, flavour, stock_units, stock_grams, product_type_id) VALUES(?,?,?,?,?)";
 		String saveBrandProductRelationString = "INSERT INTO product_brand(product_id, brand_id) VALUES(?,?)";
 		
 		
@@ -54,30 +54,33 @@ public class NewProductServlet extends HttpServlet {
 			connection.setAutoCommit(false);
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(statement);
-			preparedStatement.setString(0, productName);
-			preparedStatement.setString(1, flavour);
+			preparedStatement.setString(1, productName);
+			preparedStatement.setString(2, flavour);
 			// preparedStatement.setFloat(2, pricePerUnit);
 			// preparedStatement.setFloat(3, pricePer100g);
-			preparedStatement.setInt(2, stockUnits);
-			preparedStatement.setLong(3, stockGrams);
-			preparedStatement.setLong(4, productTypeId);
+			preparedStatement.setInt(3, stockUnits);
+			preparedStatement.setLong(4, stockGrams);
+			preparedStatement.setLong(5, productTypeId);
 			// preparedStatement.setDouble(7, kGramsSold);
 			
 			preparedStatement.executeUpdate();
 			
 			long productId;
-			String productIdStatement = "SELECT id FROM products WHERE name="+productName+"AND flavour="+flavour;
+			String productIdStatement = "SELECT id FROM products WHERE product_name=? AND flavour=?";
 			PreparedStatement findProductId = connection.prepareStatement(productIdStatement);
+			findProductId.setString(1, productName);
+			findProductId.setString(2, flavour);
 			ResultSet productIdResult = findProductId.executeQuery();
-			productId = productIdResult.getLong(0);
+			productIdResult.next();
+			productId = productIdResult.getLong(1);
 			
 			findProductId.executeQuery();
 			
 			
 			
-			PreparedStatement saveProductBrandRelation = connection.prepareStatement(statement);
-			saveProductBrandRelation.setLong(0,productId);
-			saveProductBrandRelation.setLong(1, brandId);
+			PreparedStatement saveProductBrandRelation = connection.prepareStatement(saveBrandProductRelationString);
+			saveProductBrandRelation.setLong(1,productId);
+			saveProductBrandRelation.setLong(2, brandId);
 			
 			saveProductBrandRelation.executeUpdate();
 			
