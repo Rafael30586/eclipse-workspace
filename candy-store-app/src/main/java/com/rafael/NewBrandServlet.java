@@ -36,11 +36,13 @@ public class NewBrandServlet extends HttpServlet {
 		
 		
 		try {
-			connection.setAutoCommit(true);
+			connection.setAutoCommit(false);
 			
 			PreparedStatement insertNewBrandStatement = connection.prepareStatement(insertNewBrandString);
 			insertNewBrandStatement.setString(1,brandName);
 			insertNewBrandStatement.executeUpdate();
+			
+			connection.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

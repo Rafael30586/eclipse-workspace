@@ -68,4 +68,54 @@
     <servlet-name>NewBrandServlet</servlet-name>
     <url-pattern>/NewBrandServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SetPriceServlet</display-name>
+    <servlet-name>SetPriceServlet</servlet-name>
+    <servlet-class>com.rafael.SetPriceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SetPriceServlet</servlet-name>
+    <url-pattern>/SetPriceServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SetStockServlet</display-name>
+    <servlet-name>SetStockServlet</servlet-name>
+    <servlet-class>com.rafael.SetStockServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SetStockServlet</servlet-name>
+    <url-pattern>/SetStockServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DropProductsServlet</display-name>
+    <servlet-name>DropProductsServlet</servlet-name>
+    <servlet-class>com.rafael.DropProductsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DropProductsServlet</servlet-name>
+    <url-pattern>/DropProductsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddStock</display-name>
+    <servlet-name>AddStock</servlet-name>
+    <servlet-class>com.rafael.AddStock</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddStock</servlet-name>
+    <url-pattern>/AddStock</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterSaleServlet</display-name>
+    <servlet-name>RegisterSaleServlet</servlet-name>
+    <servlet-class>com.rafael.RegisterSaleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterSaleServlet</servlet-name>
+    <url-pattern>/RegisterSaleServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

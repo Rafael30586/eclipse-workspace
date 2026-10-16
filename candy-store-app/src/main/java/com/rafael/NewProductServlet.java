@@ -29,22 +29,29 @@ public class NewProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String productName = request.getParameter("name");
 		String flavour = request.getParameter("flavour");
-		// float pricePerUnit = Float.valueOf(request.getParameter("price-per-unit"));
-		// float pricePer100g = Float.valueOf(request.getParameter("price-per-100g"));
-		// int stockUnits = Integer.valueOf(request.getParameter("stock-units"));
-		int stockUnits = 0;
-		// long stockGrams = Long.valueOf(request.getParameter("stock-grams"));
-		long stockGrams = 0;
-		// long unitsSold = Long.valueOf(request.getParameter("unitsSold"));
+		String measurement = request.getParameter("measurement");
+		Integer stockUnits = null;
+		Long stockGrams = null; 
 		long productTypeId = Long.valueOf(request.getParameter("product-type-id"));
-		// double kGramsSold = Double.valueOf(request.getParameter("kilograms-sold"));
-		
 		long brandId = Long.valueOf(request.getParameter("brand-id"));
 		
+		if("grams".equals(measurement)) { 
+			stockGrams = 0L;
+		}else if("units".equals(measurement)){
+			stockUnits = 0;
+		}else {
+			return; // Enviar respuesta con status code de bad request
+		}
 		
-		String statement = "INSERT INTO products(product_name, flavour, stock_units, stock_grams, product_type_id) VALUES(?,?,?,?,?)";
+		
+		String saveProductString = null;
 		String saveBrandProductRelationString = "INSERT INTO product_brand(product_id, brand_id) VALUES(?,?)";
 		
+		if("grams".equals(measurement)) {
+			saveProductString = "INSERT INTO products(product_name, flavour, stock_grams, product_type_id, measurement) VALUES(?,?,?,?,?)";
+		}else if("units".equals(measurement)) {
+			saveProductString = "INSERT INTO products(product_name, flavour, stock_units, product_type_id, measurement) VALUES(?,?,?,?,?)";
+		}
 		
         ServletContext context = request.getServletContext();
 		
@@ -53,17 +60,20 @@ public class NewProductServlet extends HttpServlet {
 		try {
 			connection.setAutoCommit(false);
 			
-			PreparedStatement preparedStatement = connection.prepareStatement(statement);
-			preparedStatement.setString(1, productName);
-			preparedStatement.setString(2, flavour);
-			// preparedStatement.setFloat(2, pricePerUnit);
-			// preparedStatement.setFloat(3, pricePer100g);
-			preparedStatement.setInt(3, stockUnits);
-			preparedStatement.setLong(4, stockGrams);
-			preparedStatement.setLong(5, productTypeId);
-			// preparedStatement.setDouble(7, kGramsSold);
+			PreparedStatement saveProduct = connection.prepareStatement(saveProductString);
+			saveProduct.setString(1, productName);
+			saveProduct.setString(2, flavour);
+			// saveProduct.setInt(3, stockUnits);
+			if("grams".equals(measurement)) {
+				saveProduct.setLong(3, stockGrams);
+			}else if("units".equals(measurement)) {
+				saveProduct.setLong(3, stockUnits);
+			}
+			// saveProduct.setLong(4, stockGrams);
+			saveProduct.setLong(4, productTypeId);
+			saveProduct.setString(5, measurement);
 			
-			preparedStatement.executeUpdate();
+			saveProduct.executeUpdate();
 			
 			long productId;
 			String productIdStatement = "SELECT id FROM products WHERE product_name=? AND flavour=?";
@@ -91,7 +101,7 @@ public class NewProductServlet extends HttpServlet {
 			
 			e.printStackTrace();
 		}
-		// Método incompleto
+		
 	}
 
 }
