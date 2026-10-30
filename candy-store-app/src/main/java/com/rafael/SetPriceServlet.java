@@ -72,6 +72,7 @@ public class SetPriceServlet extends HttpServlet {
 			if(pricePer100g != null || pricePerUnit != null) {
 				connection.commit();
 			}
+			// Mejorar este servlet de acuerdo a lo anotado en el cuaderno 
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

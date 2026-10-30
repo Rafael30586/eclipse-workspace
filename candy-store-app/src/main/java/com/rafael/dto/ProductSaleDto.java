@@ -4,6 +4,12 @@ public class ProductSaleDto {
 	private long id;
 	private int quantity;
 	
+	
+	
+	public ProductSaleDto() {
+		super();
+	}
+
 	public ProductSaleDto(long id, int quantity) {
 		super();
 		this.id = id;
