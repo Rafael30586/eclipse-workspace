@@ -118,4 +118,14 @@
     <servlet-name>RegisterSaleServlet</servlet-name>
     <url-pattern>/RegisterSaleServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowBrandsServlet</display-name>
+    <servlet-name>ShowBrandsServlet</servlet-name>
+    <servlet-class>com.rafael.ShowBrandsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowBrandsServlet</servlet-name>
+    <url-pattern>/ShowBrandsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
