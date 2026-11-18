@@ -128,4 +128,14 @@
     <servlet-name>ShowBrandsServlet</servlet-name>
     <url-pattern>/ShowBrandsServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowProductTypesServlet</display-name>
+    <servlet-name>ShowProductTypesServlet</servlet-name>
+    <servlet-class>com.rafael.ShowProductTypesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowProductTypesServlet</servlet-name>
+    <url-pattern>/ShowProductTypesServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
