@@ -25,6 +25,16 @@ public class ShowProductTypesServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader(
+	            "Access-Control-Allow-Origin",
+	            "*"
+	        );
+		response.setHeader(
+	            "Access-Control-Allow-Methods",
+	            "GET, POST, PUT, DELETE, OPTIONS"
+	        );
+		
+		
 		ServletContext context = request.getServletContext();
 		Connection connection = (Connection)context.getAttribute("dbConnection");
 		
