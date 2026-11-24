@@ -37,50 +37,31 @@ public class DropProductsServlet extends HttpServlet {
 		ServletContext context = request.getServletContext();
 		Connection connection = (Connection)context.getAttribute("dbConnection");
 
-		String substractUnitsString = "UPDATE products SET stock_units = stock_units - ? WHERE id = ?";
-		String substractGramsString = "UPDATE products SET stock_grams = stock_grams - ? WHERE id = ?";
+		//String substractUnitsString = "UPDATE products SET stock_units = stock_units - ? WHERE id = ?";
+		//String substractGramsString = "UPDATE products SET stock_grams = stock_grams - ? WHERE id = ?";
 		String registerProductRetirementString = "INSERT INTO dropped_products(quantity, date, motive, product_id) VALUES(?,?,?,?)";
-		String getMeasurementString = "SELECT measurement FROM products WHERE id = ?";
+		// String getMeasurementString = "SELECT measurement FROM products WHERE id = ?";
+		String substractStockString = "UPDATE products SET stock = stock - ? WHERE id = ?";
 		
 		try {
 			connection.setAutoCommit(false);
 			
-			// primero traemos el valor del measurement que le corresponde al producto
-			String measurement = null;
-			PreparedStatement getMeasurement = connection.prepareStatement(getMeasurementString);
-			getMeasurement.setLong(1,productId);
-			ResultSet getMeasurementResult = getMeasurement.executeQuery();
-		    getMeasurementResult.next();
-		    measurement = getMeasurementResult.getString("measurement");
-		    
-		    // Se ejecuta un resta de unidades o de gramos según el valor del measurement obtenido anteriormente
-		    if("units".equals(measurement)) {
-		    	PreparedStatement substractUnits = connection.prepareStatement(substractUnitsString);
-				substractUnits.setInt(1, quantity);
-				substractUnits.setLong(2, productId);
-				substractUnits.executeUpdate();
-		    }else if("grams".equals(measurement)) {
-		    	PreparedStatement substractGrams = connection.prepareStatement(substractGramsString);
-		    	substractGrams.setInt(1, quantity);
-		    	substractGrams.setLong(2, productId);
-		    	substractGrams.executeUpdate();
-		    }else {
-		    	return; // enviar un código 4xx
-		    }
-		    
-		   
+			PreparedStatement preparedStatement = connection.prepareStatement(substractStockString);
+			preparedStatement.setInt(1, quantity);
+			preparedStatement.setLong(2, productId);
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			
 		    // Se registra en la tabla dropped_products el retiro de productos junto con el motivo, la fecha, etc
-			PreparedStatement registerProductRetirement = connection.prepareStatement(registerProductRetirementString);
-			registerProductRetirement.setInt(1, quantity);
+			preparedStatement = connection.prepareStatement(registerProductRetirementString);
+			preparedStatement.setInt(1, quantity);
 			Date currentDate = new Date(System.currentTimeMillis()); 
-			registerProductRetirement.setDate(2, currentDate);
-			registerProductRetirement.setString(3, motive);
-			registerProductRetirement.setLong(4, productId);
-			registerProductRetirement.executeUpdate();
+			preparedStatement.setDate(2, currentDate);
+			preparedStatement.setString(3, motive);
+			preparedStatement.setLong(4, productId);
+			preparedStatement.executeUpdate();
 			
 			connection.commit();
-			
-			// Hay que corroborar si este servlet funciona
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -33,43 +33,25 @@ public class AddStock extends HttpServlet {
 		ServletContext context = request.getServletContext();
 		Connection connection = (Connection)context.getAttribute("dbConnection");
 		
-		String unitAdditionString = "UPDATE products SET stock_units = stock_units + ? WHERE id = ?";
-		String gramAdditionString = "UPDATE products SET stock_grams = stock_grams + ? WHERE id = ?";
 		String registerStockAdditionString = "INSERT INTO stock_additions(product_id, quantity, date) VALUES(?, ?, ?)";
-		String getMeasurementString = "SELECT measurement FROM products WHERE id = ?";
+		String stockAdditionString = "UPDATE products SET stock = stock + ? WHERE id = ?";
 		
 		try {
 			connection.setAutoCommit(false);
-			// Continuar desarrollando este método desde acá, se puede tomar como referencia el DropProductServlet para algunas cosas
 			
-			// primero traemos el valor del measurement que le corresponde al producto
-			String measurement = null;
-			PreparedStatement getMeasurement = connection.prepareStatement(getMeasurementString);
-			getMeasurement.setLong(1,productId);
-			ResultSet getMeasurementResult = getMeasurement.executeQuery();
-		    getMeasurementResult.next();
-		    measurement = getMeasurementResult.getString("measurement");
+			PreparedStatement preparedStatement = connection.prepareStatement(stockAdditionString);
+			preparedStatement.setInt(1, quantity);
+			preparedStatement.setLong(2, productId);
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			
 		    
-		    // Se suman unidades o gramos según el valor de measuremnt
-		    if("units".equals(measurement)){
-		    	PreparedStatement unitAddition = connection.prepareStatement(unitAdditionString);
-		    	unitAddition.setInt(1, quantity);
-		    	unitAddition.setLong(2, productId);
-		    	unitAddition.executeUpdate();
-		    }else if("grams".equals(measurement)) {
-		    	PreparedStatement gramAddition = connection.prepareStatement(gramAdditionString);
-		    	gramAddition.setInt(1, quantity);
-		    	gramAddition.setLong(2, productId);
-		    	gramAddition.executeUpdate();
-		    }
-		    
-		    // Registro de la suma de stock
-		    PreparedStatement registerStockAddition = connection.prepareStatement(registerStockAdditionString);
-		    registerStockAddition.setLong(1, productId);
-		    registerStockAddition.setInt(2, quantity);
+		    preparedStatement = connection.prepareStatement(registerStockAdditionString);
+		    preparedStatement.setLong(1, productId);
+		    preparedStatement.setInt(2, quantity);
 		    Date currentDate = new Date(System.currentTimeMillis());
-		    registerStockAddition.setDate(3, currentDate);
-		    registerStockAddition.executeUpdate();
+		    preparedStatement.setDate(3, currentDate);
+		    preparedStatement.executeUpdate();
 		    
 		    connection.commit();
 		    
