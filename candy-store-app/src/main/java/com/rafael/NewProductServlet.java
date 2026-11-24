@@ -39,73 +39,29 @@ public class NewProductServlet extends HttpServlet {
 		
 		String productName = request.getParameter("name");
 		String flavour = request.getParameter("flavour");
-		String measurement = request.getParameter("measurement");
-		Integer stockUnits = null;
-		Long stockGrams = null; 
+		String measurement = request.getParameter("measurement"); 
 		long productTypeId = Long.valueOf(request.getParameter("product-type-id"));
 		long brandId = Long.valueOf(request.getParameter("brand-id"));
 		
-		if("grams".equals(measurement)) { 
-			stockGrams = 0L;
-		}else if("units".equals(measurement)){
-			stockUnits = 0;
-		}else {
-			return; // Enviar respuesta con status code de bad request
-		}
-		
-		
-		String saveProductString = null;
-		String saveBrandProductRelationString = "INSERT INTO product_brand(product_id, brand_id) VALUES(?,?)";
-		
-		if("grams".equals(measurement)) {
-			saveProductString = "INSERT INTO products(product_name, flavour, stock_grams, product_type_id, measurement) VALUES(?,?,?,?,?)";
-		}else if("units".equals(measurement)) {
-			saveProductString = "INSERT INTO products(product_name, flavour, stock_units, product_type_id, measurement) VALUES(?,?,?,?,?)";
-		}
 		
         ServletContext context = request.getServletContext();
-		
 		Connection connection = (Connection)context.getAttribute("dbConnection");
 		
+		String insertNewProductString = "INSERT INTO products(product_name, flavour, product_type_id, measurement, stock, quantity_sold, brand_id) VALUES(?, ?, ?, ?, ?, ?, ?)";
+		
 		try {
-			connection.setAutoCommit(false);
+			connection.setAutoCommit(true);
 			
-			PreparedStatement saveProduct = connection.prepareStatement(saveProductString);
-			saveProduct.setString(1, productName);
-			saveProduct.setString(2, flavour);
-			// saveProduct.setInt(3, stockUnits);
-			if("grams".equals(measurement)) {
-				saveProduct.setLong(3, stockGrams);
-			}else if("units".equals(measurement)) {
-				saveProduct.setLong(3, stockUnits);
-			}
-			// saveProduct.setLong(4, stockGrams);
-			saveProduct.setLong(4, productTypeId);
-			saveProduct.setString(5, measurement);
-			
-			saveProduct.executeUpdate();
-			
-			long productId;
-			String productIdStatement = "SELECT id FROM products WHERE product_name=? AND flavour=?";
-			PreparedStatement findProductId = connection.prepareStatement(productIdStatement);
-			findProductId.setString(1, productName);
-			findProductId.setString(2, flavour);
-			ResultSet productIdResult = findProductId.executeQuery();
-			productIdResult.next();
-			productId = productIdResult.getLong(1);
-			
-			findProductId.executeQuery();
-			
-			
-			
-			PreparedStatement saveProductBrandRelation = connection.prepareStatement(saveBrandProductRelationString);
-			saveProductBrandRelation.setLong(1,productId);
-			saveProductBrandRelation.setLong(2, brandId);
-			
-			saveProductBrandRelation.executeUpdate();
-			
-			connection.commit();
-			
+			PreparedStatement preparedStatement = connection.prepareStatement(insertNewProductString);
+			preparedStatement.setString(1, productName);
+			preparedStatement.setString(2, flavour);
+			preparedStatement.setLong(3, productTypeId);
+			preparedStatement.setString(4, measurement);
+			preparedStatement.setInt(5, 0);
+			preparedStatement.setLong(6, 0L);
+			preparedStatement.setLong(7, brandId);
+			preparedStatement.executeUpdate();
+		
 			
 		} catch (SQLException e) {
 			
