@@ -33,7 +33,7 @@ public class SetPriceServlet extends HttpServlet {
 		
 		long productId = Long.parseLong(request.getParameter("product-id")); 
 		
-		Float price = Float.valueOf(request.getParameter("price"));
+		Integer price = Integer.valueOf(request.getParameter("price"));
 		
 		String setPriceString = "UPDATE products SET price = ? WHERE id = ?";
 		
@@ -41,7 +41,7 @@ public class SetPriceServlet extends HttpServlet {
 			connection.setAutoCommit(true);
 			
 		    PreparedStatement preparedStatement = connection.prepareStatement(setPriceString);
-		    preparedStatement.setDouble(1, price);
+		    preparedStatement.setInt(1, price);
 		    preparedStatement.setLong(2, productId);
 		    preparedStatement.executeUpdate();
 			

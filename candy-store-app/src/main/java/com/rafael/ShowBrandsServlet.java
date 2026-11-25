@@ -46,7 +46,7 @@ public class ShowBrandsServlet extends HttpServlet {
 			PreparedStatement preparedStatement = connection.prepareStatement(getAllBrandsString);
 			ResultSet allBrandsResultSet = preparedStatement.executeQuery();
 			
-			allBrandsResultSet.next();
+			// allBrandsResultSet.next();
 			BrandDto brandDataForwarder;
 			while(allBrandsResultSet.next()) {
 				brandDataForwarder = new BrandDto(allBrandsResultSet.getLong(1),allBrandsResultSet.getString(2));

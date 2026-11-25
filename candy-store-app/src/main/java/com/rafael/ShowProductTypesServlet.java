@@ -47,7 +47,7 @@ public class ShowProductTypesServlet extends HttpServlet {
 			PreparedStatement preparedStatement = connection.prepareStatement(getAllProductTypesString);
 			ResultSet allProductTypesResultSet = preparedStatement.executeQuery();
 			
-			allProductTypesResultSet.next();
+			// allProductTypesResultSet.next();
 			ProductTypeDto productTypeDataForwarder;
 			while(allProductTypesResultSet.next()) {
 				productTypeDataForwarder = new ProductTypeDto(allProductTypesResultSet.getLong(1), allProductTypesResultSet.getString(2));
