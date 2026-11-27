@@ -26,7 +26,21 @@ public class NewBrandServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader(
+	            "Access-Control-Allow-Origin",
+	            "*"
+	        );
+		response.setHeader(
+	            "Access-Control-Allow-Methods",
+	            "GET, POST, PUT, DELETE, OPTIONS"
+	        );
+		
+		
 		String brandName = request.getParameter("brand-name");
+		
+		if(brandName.isBlank()) {
+			return;
+		}
 		
 		String insertNewBrandString = "INSERT INTO brands(brand_name) VALUES(?)";
 		

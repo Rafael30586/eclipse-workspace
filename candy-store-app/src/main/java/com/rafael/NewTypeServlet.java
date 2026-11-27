@@ -24,7 +24,20 @@ public class NewTypeServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader(
+	            "Access-Control-Allow-Origin",
+	            "*"
+	        );
+		response.setHeader(
+	            "Access-Control-Allow-Methods",
+	            "GET, POST, PUT, DELETE, OPTIONS"
+	        );
+		
 		String typeName = request.getParameter("type-name");
+		
+		if(typeName.isBlank()) {
+			return;
+		}
 		
 		String statement = "INSERT INTO categorization(type_name) VALUES(?)";
 		
